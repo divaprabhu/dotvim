@@ -45,7 +45,6 @@ return packer.startup(function(use)
 	use { 'nvim-lualine/lualine.nvim' }
 	use { 'nvim-tree/nvim-tree.lua' }
 	use { 'akinsho/toggleterm.nvim' }
-	use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' }}
 	use { 'numToStr/Comment.nvim' }
 
 	-- LSP and Autocompletion
@@ -72,4 +71,8 @@ return packer.startup(function(use)
 
 	-- which key
 	use { "folke/which-key.nvim" }
+
+	-- telescope
+	use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' }}
+	use { 'nvim-telescope/telescope-project.nvim' }
 end)

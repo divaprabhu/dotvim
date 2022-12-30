@@ -46,6 +46,12 @@ function _python_toggle()
 	python:toggle()
 end
 
+local jshell = Terminal:new({ cmd = "jshell", hidden = true })
+function _jshell_toggle()
+	jshell:toggle()
+end
+
 vim.keymap.set("n", "<leader>tt", ":ToggleTerm<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>th", "<cmd>lua _htop_toggle()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>tj", "<cmd>lua _jshell_toggle()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>tp", "<cmd>lua _python_toggle()<CR>", {noremap = true, silent = true})

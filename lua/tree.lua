@@ -23,12 +23,12 @@ tree.setup({
   },
   update_focused_file = {
     enable = true,
-    update_root = false,
+    update_root = true,
     ignore_list = {},
   },
 })
 
-vim.keymap.set("n", "<leader>et", ":NvimTreeToggle<CR>", {noremap = true, silent = true})
+vim.keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>", {noremap = true, silent = true})
 vim.keymap.set("n", "<leader>er", ":NvimTreeRefresh<CR>", {noremap = true, silent = true})
 vim.keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>", {noremap = true, silent = true})
 vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<CR>", {noremap = true, silent = true})

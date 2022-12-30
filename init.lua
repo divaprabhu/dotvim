@@ -19,4 +19,4 @@ require('lsp')
 require('completion')
 require('treesitter')
 require('whichkey')
-
+require('tele')
