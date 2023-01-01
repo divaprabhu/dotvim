@@ -96,10 +96,13 @@ telescope.setup({
 })
 
 local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc="buffers" })
+vim.keymap.set('n', '<leader>fc', builtin.command_history, { desc="command_history" })
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc="find_files" })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc="live_grep" })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc="buffers" })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc="help_tags" })
+vim.keymap.set('n', '<leader>ft', builtin.treesitter, { desc="treesitter" })
+
 
 telescope.load_extension('project')
 vim.keymap.set('n', '<leader>fp', telescope.extensions.project.project, { desc="project" })

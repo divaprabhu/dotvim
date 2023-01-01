@@ -28,7 +28,7 @@ tree.setup({
   },
 })
 
-vim.keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>", {noremap = true, silent = true})
-vim.keymap.set("n", "<leader>er", ":NvimTreeRefresh<CR>", {noremap = true, silent = true})
-vim.keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>", {noremap = true, silent = true})
 vim.keymap.set("n", "<leader>ec", ":NvimTreeCollapse<CR>", {noremap = true, silent = true})
+vim.keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>", {noremap = true, silent = true})
+vim.keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>", {noremap = true, silent = true})
+vim.keymap.set("n", "<leader>er", ":NvimTreeRefresh<CR>", {noremap = true, silent = true})

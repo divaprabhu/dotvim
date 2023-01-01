@@ -75,4 +75,9 @@ return packer.startup(function(use)
 	-- telescope
 	use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' }}
 	use { 'nvim-telescope/telescope-project.nvim' }
+	use { 'BurntSushi/ripgrep' }
+
+	-- debugger
+	use { 'mfussenegger/nvim-dap' }
+	use { 'rcarriga/nvim-dap-ui' }
 end)

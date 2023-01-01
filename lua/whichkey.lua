@@ -79,7 +79,9 @@ wk.setup({
 wk.register({
 	["<leader>a"] = { name = "+align" },
 	["<leader>c"] = { name = "+comment" },
+	["<leader>d"] = { name = "+debugger" },
 	["<leader>e"] = { name = "+explorer" },
+	["<leader>f"] = { name = "+telescope" },
 	["<leader>l"] = { name = "+lsp" },
 	["<leader>s"] = { name = "+surround" },
 	["<leader>t"] = { name = "+terminal" },
