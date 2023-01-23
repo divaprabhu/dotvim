@@ -51,7 +51,13 @@ function _jshell_toggle()
 	jshell:toggle()
 end
 
-vim.keymap.set("n", "<leader>tt", ":ToggleTerm<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>th", "<cmd>lua _htop_toggle()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>tj", "<cmd>lua _jshell_toggle()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>tp", "<cmd>lua _python_toggle()<CR>", {noremap = true, silent = true})
+local lua  = Terminal:new({ cmd = "lua", hidden = true })
+function _lua_toggle()
+	lua:toggle()
+end
+
+vim.keymap.set("n", "<leader>tt", ":ToggleTerm<CR>", {noremap = true, silent = true, desc = "Terminal" })
+vim.api.nvim_set_keymap("n", "<leader>th", "<cmd>lua _htop_toggle()<CR>", {noremap = true, silent = true, desc = "Htop" })
+vim.api.nvim_set_keymap("n", "<leader>tj", "<cmd>lua _jshell_toggle()<CR>", {noremap = true, silent = true, desc = "Jshell" })
+vim.api.nvim_set_keymap("n", "<leader>tp", "<cmd>lua _python_toggle()<CR>", {noremap = true, silent = true, desc = "Python" })
+vim.api.nvim_set_keymap("n", "<leader>tl", "<cmd>lua _lua_toggle()<CR>", {noremap = true, silent = true, desc = "Lua" })

@@ -4,12 +4,12 @@ if not status_ok then
 end
 
 align.setup(
-	-- No need to copy this inside `setup()`. Will be used automatically.
+	--No need to copy this inside `setup()`. Will be used automatically.
 	{
-	  -- Module mappings. Use `''` (empty string) to disable one.
+	  --Module mappings. Use `''` (empty string) to disable one.
 	  mappings = {
-	    start = '<leader>a',
-	    start_with_preview = '<leader>A',
+	    start = '<leader>aa',
+	    start_with_preview = '<leader>ap',
 	  },
 
 	  -- Modifiers changing alignment steps and/or options

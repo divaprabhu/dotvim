@@ -224,7 +224,7 @@ vim.opt.pastetoggle = "<f5>"		-- key code that causes 'paste' to toggle
 -- readonly	  			-- disallow writing the buffer
 -- redrawtime	  			-- timeout for 'hlsearch' and |:match| highlighting
 -- regexpengine	  			-- default regexp engine to use
-vim.opt.relativenumber = true		-- show relative line number in front of each line
+vim.opt.relativenumber = false		-- show relative line number in front of each line
 -- remap		  		-- allow mappings to work recursively
 -- report	  			-- threshold for reporting nr. of lines changed
 -- revins	  			-- inserting characters will work backwards

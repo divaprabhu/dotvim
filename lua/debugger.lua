@@ -63,14 +63,14 @@ dapui.setup({
     -- Display controls in this element
     element = "repl",
     icons = {
-      pause = "",
-      play = "",
-      step_into = "",
-      step_over = "",
-      step_out = "",
-      step_back = "",
-      run_last = "",
-      terminate = "",
+      pause = "",
+      play = "",
+      step_into = "",
+      step_over = "",
+      step_out = "",
+      step_back = "",
+      run_last = "",
+      terminate = "",
     },
   },
   floating = {
@@ -98,16 +98,17 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 	dapui.close()
 end
 
-vim.keymap.set('n','<leader>bc', dap.continue, { desc="continue" })
-vim.keymap.set('n','<leader>bsi', dap.step_into, { desc="stemp_into" })
-vim.keymap.set('n','<leader>bso', dap.step_out, { desc="step_out" })
-vim.keymap.set('n','<leader>br', dap.repl.toggle, { desc="repl.toggle" })
-vim.keymap.set('n','<leader>bR', dap.run_last, { desc="run_last" })
-vim.keymap.set('n','<leader>bt', dap.terminate, { desc="terminate" })
-vim.keymap.set('n','<leader>bu', dap.up, { desc="up stack trace" })
-vim.keymap.set('n','<leader>bd', dap.down, { desc="down stack trace" })
-vim.keymap.set('n','<leader>bb', dap.toggle_breakpoint, { desc="toggle_breakpoint" })
-vim.keymap.set('n','<leader>bl', dap.list_breakpoints, { desc="list_breakpoints" })
+--vim.keymap.set('n','<leader>dR', dap.run_last, { desc="run_last" })
+vim.keymap.set('n','<leader>db', dap.toggle_breakpoint, { desc="toggle_breakpoint" })
+vim.keymap.set('n','<leader>dc', dap.continue, { desc="continue" })
+vim.keymap.set('n','<leader>du', dap.up, { desc="up stack trace" })
+vim.keymap.set('n','<leader>dd', dap.down, { desc="down stack trace" })
+vim.keymap.set('n','<leader>di', dap.step_into, { desc="stemp_into" })
+vim.keymap.set('n','<leader>do', dap.step_out, { desc="step_out" })
+vim.keymap.set('n','<leader>dl', dap.list_breakpoints, { desc="list_breakpoints" })
+vim.keymap.set('n','<leader>dr', dap.repl.toggle, { desc="repl.toggle" })
+vim.keymap.set('n','<leader>ds', dap.terminate, { desc="terminate(stop)" })
+vim.keymap.set('n','<leader>dt', dapui.toggle, { desc="toggle" })
 
 dap.adapters.lldb = {
 	type = 'executable',

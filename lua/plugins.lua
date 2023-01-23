@@ -61,13 +61,11 @@ return packer.startup(function(use)
 
 	-- treesitter
 	use { "nvim-treesitter/nvim-treesitter" }
+	use { "nvim-treesitter/nvim-treesitter-textobjects" }
 
 	-- lsp installer
 	use { "williamboman/mason.nvim" }
 	use { "williamboman/mason-lspconfig.nvim" }
-
-	-- vimscript plugins
-	use { "tpope/vim-unimpaired" } -- Have packer manage itself
 
 	-- which key
 	use { "folke/which-key.nvim" }

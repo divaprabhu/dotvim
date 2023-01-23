@@ -77,12 +77,16 @@ wk.setup({
 })
 
 wk.register({
-	["<leader>a"] = { name = "+align" },
-	["<leader>c"] = { name = "+comment" },
-	["<leader>d"] = { name = "+debugger" },
-	["<leader>e"] = { name = "+explorer" },
-	["<leader>f"] = { name = "+telescope" },
-	["<leader>l"] = { name = "+lsp" },
-	["<leader>s"] = { name = "+surround" },
-	["<leader>t"] = { name = "+terminal" },
-})
+	["a"] = { name = "+align" },
+	["c"] = { name = "+comment" },
+	["d"] = { name = "+debugger" },
+	["e"] = { name = "+explorer" },
+	["f"] = { name = "+telescope" },
+	["fd"] = { name = "+telescope lsp" },
+	["fv"] = { name = "+telescope git" },
+	["l"] = { name = "+lsp" },
+	["lc"] = { name = "+lsp calls" },
+	["lw"] = { name = "+lsp workspace" },
+	["s"] = { name = "+surround" },
+	["t"] = { name = "+terminal" },
+}, { prefix = "<leader>" })

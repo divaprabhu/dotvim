@@ -1,4 +1,4 @@
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 local options = {
 	noremap = true,
@@ -19,15 +19,10 @@ map("n", "<M-j>", "<C-w>j", options)
 map("n", "<M-k>", "<C-w>k", options)
 map("n", "<M-l>", "<C-w>l", options)
 
-map("i", "<M-h>", "<Esc><C-w>h", options)
-map("i", "<M-j>", "<Esc><C-w>j", options)
-map("i", "<M-k>", "<Esc><C-w>k", options)
-map("i", "<M-l>", "<Esc><C-w>l", options)
-
-map("v", "<M-h>", "<Esc><C-w>h", options)
-map("v", "<M-j>", "<Esc><C-w>j", options)
-map("v", "<M-k>", "<Esc><C-w>k", options)
-map("v", "<M-l>", "<Esc><C-w>l", options)
+map({"i", "v"}, "<M-h>", "<Esc><C-w>h", options)
+map({"i", "v"}, "<M-j>", "<Esc><C-w>j", options)
+map({"i", "v"}, "<M-k>", "<Esc><C-w>k", options)
+map({"i", "v"}, "<M-l>", "<Esc><C-w>l", options)
 
 map("t", "<M-h>", "<C-\\><C-n><C-w>h", options)
 map("t", "<M-j>", "<C-\\><C-n><C-w>j", options)
@@ -48,3 +43,20 @@ map("n", "<C-]", ":normal g<C-]>", options)
 map("t", "<Esc>", "<C-\\><C-n>", options)
 map("t", "<C-[", "<Esc>", options)
 
+-- unimpaired
+map("n", "[a", ":previous<CR>", options)
+map("n", "]a", ":next<CR>", options)
+map("n", "[A", ":first<CR>", options)
+map("n", "]A", ":last<CR>", options)
+map("n", "[b", ":bprevious<CR>", options)
+map("n", "]b", ":bnext<CR>", options)
+map("n", "[B", ":bfirst<CR>", options)
+map("n", "]B", ":blast<CR>", options)
+map("n", "[l", ":lprevious<CR>", options)
+map("n", "]l", ":lnext<CR>", options)
+map("n", "[L", ":lfirst<CR>", options)
+map("n", "]L", ":llast<CR>", options)
+map("n", "[q", ":cprevious<CR>", options)
+map("n", "]q", ":cnext<CR>", options)
+map("n", "[Q", ":cfirst<CR>", options)
+map("n", "]Q", ":clast<CR>", options)
