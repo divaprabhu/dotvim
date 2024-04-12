@@ -13,6 +13,11 @@ if not status_ok then
 	return
 end
 
+local status_ok, completion = pcall(require, "mini.completion")
+if not status_ok then
+	return
+end
+
 --[[
 local status_ok, installer = pcall(require, "mason-tool-installer")
 if not status_ok then
@@ -42,7 +47,7 @@ local servers = {
 	"jdtls",
 	"lua_ls",
 	"remark_ls",
-	"pyright",
+	"pylsp",
 	"lemminx",
 	"yamlls",
 }
@@ -186,106 +191,6 @@ masonconfig.setup({
     handlers = nil,
 })
 
-local on_attach = function(client, bufnr)
-	-- Mappings.
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	vim.keymap.set(
-		"n",
-		"<leader>lD",
-		vim.lsp.buf.declaration,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "jump to declaration" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>lR",
-		vim.lsp.buf.references,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list references" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>la",
-		vim.lsp.buf.code_action,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list code actions" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>lci",
-		vim.lsp.buf.incoming_calls,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list incoming call" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>lco",
-		vim.lsp.buf.outgoing_calls,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list outgoing call" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>ld",
-		vim.lsp.buf.definition,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "jump to definition" }
-	)
-	vim.keymap.set("n", "<leader>lf", function()
-		vim.lsp.buf.format({ async = true })
-	end, { noremap = true, silent = true, buffer = bufnr, desc = "format buffer" })
-	vim.keymap.set(
-		"n",
-		"<leader>lg",
-		vim.lsp.buf.signature_help,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "show signature help" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>li",
-		vim.lsp.buf.implementation,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list implementation" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>lk",
-		vim.lsp.buf.hover,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "display hover information" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>lr",
-		vim.lsp.buf.rename,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "rename" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>ls",
-		vim.lsp.buf.document_symbol,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list symbols" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>lt",
-		vim.lsp.buf.type_definition,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list type definition" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>lwa",
-		vim.lsp.buf.add_workspace_folder,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "add_workspace_folder" }
-	)
-	vim.keymap.set("n", "<leader>lwl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, { noremap = true, silent = true, buffer = bufnr, desc = "list workspace folders" })
-	vim.keymap.set(
-		"n",
-		"<leader>lwr",
-		vim.lsp.buf.remove_workspace_folder,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "remove workspace folder" }
-	)
-	vim.keymap.set(
-		"n",
-		"<leader>lws",
-		vim.lsp.buf.workspace_symbol,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list workspace symbol" }
-	)
-end
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
@@ -293,6 +198,55 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
+
+-- Enable Mini Autocompletion
+completion.setup({
+  -- Delay (debounce type, in ms) between certain Neovim event and action.
+  -- This can be used to (virtually) disable certain automatic actions by
+  -- setting very high delay time (like 10^7).
+  delay = { completion = 100, info = 100, signature = 50 },
+
+  -- Configuration for action windows:
+  -- - `height` and `width` are maximum dimensions.
+  -- - `border` defines border (as in `nvim_open_win()`).
+  window = {
+    info = { height = 40, width = 80, border = 'none' },
+    signature = { height = 25, width = 80, border = 'none' },
+  },
+
+  -- Way of how module does LSP completion
+  lsp_completion = {
+    -- `source_func` should be one of 'completefunc' or 'omnifunc'.
+    source_func = 'completefunc',
+
+    -- `auto_setup` should be boolean indicating if LSP completion is set up
+    -- on every `BufEnter` event.
+    auto_setup = true,
+
+    -- `process_items` should be a function which takes LSP
+    -- 'textDocument/completion' response items and word to complete. Its
+    -- output should be a table of the same nature as input items. The most
+    -- common use-cases are custom filtering and sorting. You can use
+    -- default `process_items` as `MiniCompletion.default_process_items()`.
+    -- process_items = --<function: filters out snippets; sorts by LSP specs>,
+  },
+
+  -- Fallback action. It will always be run in Insert mode. To use Neovim's
+  -- built-in completion (see `:h ins-completion`), supply its mapping as
+  -- string. Example: to use 'whole lines' completion, supply '<C-x><C-l>'.
+  -- fallback_action = --<function: like `<C-n>` completion>,
+
+  -- Module mappings. Use `''` (empty string) to disable one. Some of them
+  -- might conflict with system mappings.
+  mappings = {
+    force_twostep = '<C-Space>', -- Force two-step completion
+    force_fallback = '<A-Space>', -- Force fallback completion
+  },
+
+  -- Whether to set Vim's settings for better experience (modifies
+  -- `shortmess` and `completeopt`)
+  set_vim_settings = true,
+})
 
 --[[
 conform.setup({

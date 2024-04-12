@@ -6,46 +6,34 @@ end
 local builtin = require('telescope.builtin')
 
 wk.register({
-	["e"] = { ":Neotree toggle<CR>", "Explorer" },
-	["t"] = { ":ToggleTerm<CR>", "Terminal" },
-	["f"] = { ":Telescope find_files cwd=~ follow=true<CR>", "File Picker" },
-	["F"] = { ":Telescope find_files<CR>", "File Picker Working Directory" },
-	["b"] = { ":Telescope buffers<CR>", "Buffer Picker" },
-	["j"] = { ":Telescope jumplist<CR>", "Jumplist Picker" },
-}, { prefix = "<leader>" })
 
+	["<leader>f"] = { "<cmd>Telescope find_files cwd=~ follow=true<CR>", "File Picker" },
+	["<leader>F"] = { "<cmd>Telescope find_files<CR>", "File Picker Working Directory" },
+	["<leader>b"] = { "<cmd>Telescope buffers<CR>", "Buffer Picker" },
+	["<leader>j"] = { "<cmd>Telescope jumplist<CR>", "Jumplist Picker" },
+	["<leader>s"] = { "<cmd>Telescope lsp_document_symbols<CR>", "[LSP]Symbol Picker" },
+	["<leader>S"] = { "<cmd>Telescope lsp_workspace_symbols<CR>", "[LSP]Workspace Symbol Picker" },
+	["<leader>d"] = { "<cmd>Telescope diagnostics<CR>", "[LSP]Diagnostics Picker" },
+	["<leader>'"] = { "<cmd>Telescope resume<CR>", "Open Last Used Picker" },
 
--- file pickers
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc="find_files" })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc="live_grep" })
+	["<leader>h"] = { "<cmd>lua vim.lsp.buf.references()<CR>", "[LSP]Symbol References" },
+	["<leader>k"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "[LSP]Symbol Help" },
+	["<leader>r"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "[LSP]Rename Symbol" },
+	["<leader>a"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "[LSP]Code Action" },
+	["<leader>="] = { "<cmd>lua vim.lsp.buf.format()<CR>", "[LSP]Format Buffer" },
+	["g"] = {
+		["d"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "[LSP]Goto Definition" },
+		["y"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "[LSP]Goto Type Definition" },
+		["i"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "[LSP]Goto Implementation" },
+	},
 
--- vim pickers
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc="buffers" })
-vim.keymap.set('n', '<leader>fc', builtin.commands, { desc="commands" })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc="help_tags" })
-vim.keymap.set('n', '<leader>fj', builtin.jumplist, { desc="jump list" })
-vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc="keymaps" })
-vim.keymap.set('n', '<leader>fl', builtin.loclist, { desc="location list" })
-vim.keymap.set('n', '<leader>fm', builtin.marks, { desc="marks" })
-vim.keymap.set('n', '<leader>fq', builtin.quickfix, { desc="quickfix" })
-vim.keymap.set('n', '<leader>fr', builtin.registers, { desc="registers" })
+	["<leader>C"] = { "<CR>", "Toggle Block Comment" },
+	["<leader>c"] = { "<CR>", "Toggle Comment" },
 
--- lsp pickers
-vim.keymap.set('n', '<leader>fdci', builtin.lsp_incoming_calls, { desc="list incoming calls" })
-vim.keymap.set('n', '<leader>fdco', builtin.lsp_outgoing_calls, { desc="list outgoing calls" })
-vim.keymap.set('n', '<leader>fdd', builtin.lsp_definitions, { desc="goto or list definitions" })
-vim.keymap.set('n', '<leader>fdi', builtin.lsp_implementations, { desc="goto or list implementation" })
-vim.keymap.set('n', '<leader>fdr', builtin.lsp_references, { desc="list references" })
-vim.keymap.set('n', '<leader>fds', builtin.lsp_document_symbols, { desc="list symbols" })
-vim.keymap.set('n', '<leader>fdt', builtin.lsp_type_definitions, { desc="goto or list type definitions" })
-vim.keymap.set('n', '<leader>fdws', builtin.lsp_workspace_symbols, { desc="list workspace symbols" })
+	["<leader>e"] = { "<cmd>Neotree toggle<CR>", "Explorer" },
+	["<leader>t"] = { "<cmd>ToggleTerm<CR>", "Terminal" },
 
--- git pickers
-vim.keymap.set('n', '<leader>fvc', builtin.git_commits, { desc="list git commits" })
-vim.keymap.set('n', '<leader>fvb', builtin.git_branches, { desc="list git branches" })
-vim.keymap.set('n', '<leader>fvs', builtin.git_status, { desc="list git status" })
-vim.keymap.set('n', '<leader>fvh', builtin.git_stash, { desc="list git stashes" })
+	["<leader>&"] = { name="Align" },
 
--- treesitter
-vim.keymap.set('n', '<leader>ft', builtin.treesitter, { desc="treesitter" })
-
+	["<leader>?"] = { "<cmd>Telescope commands<CR>", "Open Command Palette" },
+})

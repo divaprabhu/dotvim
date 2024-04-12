@@ -21,7 +21,7 @@ session.setup(
 	  file = 'Session.vim',
 
 	  -- Whether to force possibly harmful actions (meaning depends on function)
-	  force = { read = false, write = true, delete = false },
+	  force = { read = true, write = true, delete = true },
 
 	  -- Hook functions for actions. Default `nil` means 'do nothing'.
 	  hooks = {
