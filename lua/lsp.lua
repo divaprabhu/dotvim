@@ -30,38 +30,38 @@ local on_attach = function(client, bufnr)
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	vim.keymap.set('n', '<leader>lD', vim.lsp.buf.declaration,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "jump to declaration" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "jump to declaration" })
 	vim.keymap.set('n', '<leader>lR', vim.lsp.buf.references,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list references" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "list references" })
 	vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list code actions" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "list code actions" })
 	vim.keymap.set('n', '<leader>lci', vim.lsp.buf.incoming_calls,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list incoming call" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "list incoming call" })
 	vim.keymap.set('n', '<leader>lco', vim.lsp.buf.outgoing_calls,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list outgoing call" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "list outgoing call" })
 	vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "jump to definition" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "jump to definition" })
 	vim.keymap.set('n', '<leader>lf', function() vim.lsp.buf.format { async = true } end,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "format buffer" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "format buffer" })
 	vim.keymap.set('n', '<leader>lg', vim.lsp.buf.signature_help,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "show signature help" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "show signature help" })
 	vim.keymap.set('n', '<leader>li', vim.lsp.buf.implementation,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list implementation" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "list implementation" })
 	vim.keymap.set('n', '<leader>lk', vim.lsp.buf.hover,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "display hover information" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "display hover information" })
 	vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { noremap = true, silent = true, buffer = bufnr, desc = "rename" })
 	vim.keymap.set('n', '<leader>ls', vim.lsp.buf.document_symbol,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list symbols" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "list symbols" })
 	vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list type definition" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "list type definition" })
 	vim.keymap.set('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "add_workspace_folder" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "add_workspace_folder" })
 	vim.keymap.set('n', '<leader>lwl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list workspace folders" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "list workspace folders" })
 	vim.keymap.set('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "remove workspace folder" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "remove workspace folder" })
 	vim.keymap.set('n', '<leader>lws', vim.lsp.buf.workspace_symbol,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "list workspace symbol" })
+	{ noremap = true, silent = true, buffer = bufnr, desc = "list workspace symbol" })
 end
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = { "clangd", "gopls", "jdtls", "sumneko_lua", "pylsp" }

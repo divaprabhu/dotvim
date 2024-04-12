@@ -78,4 +78,7 @@ return packer.startup(function(use)
 	-- debugger
 	use { 'mfussenegger/nvim-dap' }
 	use { 'rcarriga/nvim-dap-ui' }
+
+	-- project
+	use { 'ahmedkhalf/project.nvim' }
 end)
