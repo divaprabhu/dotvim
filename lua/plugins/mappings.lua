@@ -27,13 +27,12 @@ wk.register({
 		["i"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "[LSP]Goto Implementation" },
 	},
 
-	["<leader>C"] = { "<CR>", "Toggle Block Comment" },
-	["<leader>c"] = { "<CR>", "Toggle Comment" },
-
 	["<leader>e"] = { "<cmd>Neotree toggle<CR>", "Explorer" },
 	["<leader>t"] = { "<cmd>ToggleTerm<CR>", "Terminal" },
 
 	["<leader>&"] = { name="Align" },
+	["<leader>g"] = { name="Gitsigns" },
+	["<leader>G"] = { "<cmd>Neogit<CR>", "Neogit" },
 
 	["<leader>?"] = { "<cmd>Telescope commands<CR>", "Open Command Palette" },
 })

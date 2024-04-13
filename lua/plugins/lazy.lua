@@ -13,13 +13,13 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- theme
-	{ "folke/tokyonight.nvim", lazy = false },
+	{ "folke/tokyonight.nvim",     lazy = false },
 
 	-- ui/core
-	{ "folke/which-key.nvim", lazy = true },
+	{ "folke/which-key.nvim",      lazy = true },
 	{ "nvim-lualine/lualine.nvim", lazy = false },
-	{ "echasnovski/mini.surround", version = "*", lazy=true },
-	{ "akinsho/toggleterm.nvim", lazy = true },
+	{ "echasnovski/mini.surround", version = "*", lazy = true },
+	{ "akinsho/toggleterm.nvim",   lazy = true },
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		lazy = true,
@@ -31,14 +31,16 @@ require("lazy").setup({
 	},
 
 	-- lsp
-	{ "neovim/nvim-lspconfig", lazy = true },
-	{ "williamboman/mason.nvim", lazy = true },
+	{ "neovim/nvim-lspconfig",             lazy = true },
+	{ "williamboman/mason.nvim",           lazy = true },
 	{ "williamboman/mason-lspconfig.nvim", lazy = true },
-	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "nvim-telescope/telescope.nvim",     dependencies = { "nvim-lua/plenary.nvim" } },
 
-	{ "echasnovski/mini.completion", version="*", lazy=true },
-	{ "echasnovski/mini.align", version = "*", lazy=true },
-	{ "echasnovski/mini.sessions", version = "*", lazy=true},
-	{ "echasnovski/mini.bracketed", version = "*", lazy=true },
-
+	{ "echasnovski/mini.completion",       version = "*",                               lazy = true },
+	{ "echasnovski/mini.align",            version = "*",                               lazy = true },
+	{ "echasnovski/mini.sessions",         version = "*",                               lazy = true },
+	{ "echasnovski/mini.bracketed",        version = "*",                               lazy = true },
+	{ "echasnovski/mini.comment",          version = "*",                               lazy = true },
+	{ "lewis6991/gitsigns.nvim",           lazy = true },
+	{ "NeogitOrg/neogit",                  dependencies = { "nvim-lua/plenary.nvim", }, lazy = true },
 }, { lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json" })
