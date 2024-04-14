@@ -43,4 +43,7 @@ require("lazy").setup({
 	{ "echasnovski/mini.comment",          version = "*",                               lazy = true },
 	{ "lewis6991/gitsigns.nvim",           lazy = true },
 	{ "NeogitOrg/neogit",                  dependencies = { "nvim-lua/plenary.nvim", }, lazy = true },
+
+	{ "AckslD/swenv.nvim",                 lazy = true },
+
 }, { lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json" })

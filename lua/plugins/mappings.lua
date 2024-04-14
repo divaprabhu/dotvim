@@ -34,5 +34,7 @@ wk.register({
 	["<leader>g"] = { name="Gitsigns" },
 	["<leader>G"] = { "<cmd>Neogit<CR>", "Neogit" },
 
+	["<leader>v"] = { "<cmd>lua require('swenv.api').pick_env()<CR>", "Venv Picker" },
+
 	["<leader>?"] = { "<cmd>Telescope commands<CR>", "Open Command Palette" },
 })
