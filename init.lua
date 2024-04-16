@@ -16,9 +16,9 @@ require("plugins.align")
 require("plugins.sessions")
 require("plugins.bracketed")
 require("plugins.comment")
-require("plugins.gitsigns")
-require("plugins.neogit")
-require("plugins.venv")
+require("plugins.git")
+
+require("plugins.python")
 
 require("plugins.mappings")
 -- require('sessions')

@@ -8,8 +8,8 @@ align.setup(
 	{
 	  --Module mappings. Use `''` (empty string) to disable one.
 	  mappings = {
-	    start = '<leader>&a',
-	    start_with_preview = '<leader>&p',
+	    start = '<leader>aa',
+	    start_with_preview = '<leader>ap',
 	  },
 
 	  -- Modifiers changing alignment steps and/or options
