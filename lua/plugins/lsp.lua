@@ -41,15 +41,9 @@ vim.fn.mkdir(install_dir, "p")
 local ensure_installed = {}
 
 local servers = {
-	"bashls",
-	"html",
-	"jsonls",
 	"jdtls",
 	"lua_ls",
-	"remark_ls",
 	"pylsp",
-	"lemminx",
-	"yamlls",
 }
 
 local formatters = {
