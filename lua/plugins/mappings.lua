@@ -65,7 +65,23 @@ wk.register({
 	},
 
 	-- Git
-	["<leader>g"] = { name = "Gitsigns" },
+	["<leader>g"] = {
+		name = "Gitsigns",
+		["s"] = { function() require('gitsigns').stage_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, "Stage Hunk" },
+		["r"] = { function() require('gitsigns').reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, "Reset Hunk To Index" },
+		["u"] = { "<cmd>Gitsigns undo_stage_hunk<CR>", "Undo Stage Hunk" },
+		["S"] = { "<cmd>lua require('gitsigns').stage_buffer()<CR>",  "Stage Buffer" },
+		["R"] = { "<cmd>lua require('gitsigns').reset_buffer()<CR>",  "Reset Buffer To Index" },
+		["U"] = { "<cmd>lua require('gitsigns').reset_buffer_index()<CR>",  "Undo Stage Buffer" },
+		["p"] = { "<cmd>lua require('gitsigns').preview_hunk()<CR>",  "Preview Hunk" },
+		["b"] = { "<cmd>lua require('gitsigns').toggle_current_line_blame()<CR>",  "Blame Toggle" },
+		["q"] = { "<cmd>lua require('gitsigns').setqflist()<CR>",  "Hunks To QuickFix List" },
+		["l"] = { "<cmd>lua require('gitsigns').setloclist()<CR>",  "Hunks To Location List" },
+		["d"] = { "<cmd>lua require('gitsigns').diffthis()<CR>",  "Diff With Index" },
+		["D"] = { "<cmd>lua require('gitsigns').diffthis('~')<CR>",  "Diff With Last Commit" },
+		["v"] = { "<cmd>lua require('gitsigns').select_hunk()<CR>",  "Select Hunk" },
+	},
+
 	["<leader>G"] = { "<cmd>Neogit<CR>", "Neogit" },
 
 	-- python

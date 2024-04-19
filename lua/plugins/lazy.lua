@@ -40,6 +40,8 @@ require("lazy").setup({
 	{ "williamboman/mason-lspconfig.nvim", lazy = true },
 	{ "mfussenegger/nvim-dap",             lazy = true },
 	{ "echasnovski/mini.completion",       version = "*",                               lazy = true },
+	{ "nvim-treesitter/nvim-treesitter",   lazy = true },
+	{ "drybalka/tree-climber.nvim",        lazy = true },
 
 	-- fuzzy search and picker
 	{ "nvim-telescope/telescope.nvim",     dependencies = { "nvim-lua/plenary.nvim" } },
