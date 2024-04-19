@@ -23,7 +23,7 @@ require("lazy").setup({
 	{ "echasnovski/mini.align",     version = "*", lazy = true },
 	{ "echasnovski/mini.sessions",  version = "*", lazy = true },
 	{ "echasnovski/mini.bracketed", version = "*", lazy = true },
-	{ "echasnovski/mini.comment",   version = "*", lazy = true },
+	{ "numToStr/Comment.nvim",      lazy = true },
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		lazy = true,

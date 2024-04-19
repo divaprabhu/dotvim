@@ -5,12 +5,20 @@ end
 
 wk.register({
 	-- Core
-	["<leader>e"] = { "<cmd>Neotree toggle<CR>", "Explorer" },
-	["<leader>c"] = { "<cmd>ToggleTerm<CR>", "Command Line" },
+	["<leader>e"] = {
+		name = "Explorer",
+		["e"] = { "<cmd>Neotree toggle<CR>", "Explorer Toggle" },
+		["f"] = { "<cmd>Neotree focus<CR>", "Explorer Focus" },
+		["b"] = { "<cmd>Neotree buffers<CR>", "Explorer Buffers" },
+		["g"] = { "<cmd>Neotree git_status<CR>", "Explorer Git Status" },
+		["c"] = { "<cmd>Neotree git_status<CR>", "Explorer Close" },
+	},
+	["<leader>t"] = { name = "Terminal" },
 	["<leader>a"] = { name = "Align" },
+	["<leader>c"] = { name = "Comment" },
 
 	-- Pickers
-	["<leader>t"] = {
+	["<leader>f"] = {
 		name = "Telescope File Picker",
 		["f"] = { "<cmd>Telescope find_files cwd=~ follow=true<CR>", "File Picker" },
 		["w"] = { "<cmd>Telescope find_files<CR>", "File Picker Working Directory" },
