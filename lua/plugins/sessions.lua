@@ -18,7 +18,7 @@ session.setup(
 	  directory = vim.fn.stdpath('data') .. '/session',
 
 	  -- File for local session (use `''` to disable)
-	  file = 'Session.vim',
+	  file = 'session.vim',
 
 	  -- Whether to force possibly harmful actions (meaning depends on function)
 	  force = { read = true, write = true, delete = true },
