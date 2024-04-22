@@ -41,7 +41,6 @@ vim.fn.mkdir(install_dir, "p")
 local ensure_installed = {}
 
 local servers = {
-	"jdtls",
 	"lua_ls",
 	"pylsp",
 }
@@ -165,85 +164,119 @@ mason.setup({
 })
 
 masonconfig.setup({
-    -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
-    -- This setting has no relation with the `automatic_installation` setting.
-    ---@type string[]
-    ensure_installed = servers,
+	-- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
+	-- This setting has no relation with the `automatic_installation` setting.
+	---@type string[]
+	ensure_installed = servers,
 
-    -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
-    -- This setting has no relation with the `ensure_installed` setting.
-    -- Can either be:
-    --   - false: Servers are not automatically installed.
-    --   - true: All servers set up via lspconfig are automatically installed.
-    --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
-    --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
-    ---@type boolean
-    automatic_installation = true,
+	-- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
+	-- This setting has no relation with the `ensure_installed` setting.
+	-- Can either be:
+	--   - false: Servers are not automatically installed.
+	--   - true: All servers set up via lspconfig are automatically installed.
+	--   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
+	--       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
+	---@type boolean
+	automatic_installation = true,
 
-    -- See `:h mason-lspconfig.setup_handlers()`
-    ---@type table<string, fun(server_name: string)>?
-    handlers = nil,
+	-- See `:h mason-lspconfig.setup_handlers()`
+	---@type table<string, fun(server_name: string)>?
+	handlers = nil,
 })
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-for _, lsp in ipairs(servers) do
+
+--[[ for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		--on_attach = on_attach,
 		capabilities = capabilities,
 	})
 end
+]]
+lspconfig.lua_ls.setup {
+	on_init = function(client)
+		local path = client.workspace_folders[1].name
+		if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
+			return
+		end
 
+		client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+			runtime = {
+				-- Tell the language server which version of Lua you're using
+				-- (most likely LuaJIT in the case of Neovim)
+				version = 'LuaJIT'
+			},
+			-- Make the server aware of Neovim runtime files
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME
+					-- Depending on the usage, you might want to add additional paths here.
+					-- "${3rd}/luv/library"
+					-- "${3rd}/busted/library",
+				}
+				-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+				-- library = vim.api.nvim_get_runtime_file("", true)
+			}
+		})
+	end,
+	settings = {
+		Lua = {}
+	}
+}
+
+lspconfig.pylsp.setup {}
 -- Enable Mini Autocompletion
 completion.setup({
-  -- Delay (debounce type, in ms) between certain Neovim event and action.
-  -- This can be used to (virtually) disable certain automatic actions by
-  -- setting very high delay time (like 10^7).
-  delay = { completion = 100, info = 100, signature = 50 },
+	-- Delay (debounce type, in ms) between certain Neovim event and action.
+	-- This can be used to (virtually) disable certain automatic actions by
+	-- setting very high delay time (like 10^7).
+	delay = { completion = 100, info = 100, signature = 50 },
 
-  -- Configuration for action windows:
-  -- - `height` and `width` are maximum dimensions.
-  -- - `border` defines border (as in `nvim_open_win()`).
-  window = {
-    info = { height = 40, width = 80, border = 'none' },
-    signature = { height = 25, width = 80, border = 'none' },
-  },
+	-- Configuration for action windows:
+	-- - `height` and `width` are maximum dimensions.
+	-- - `border` defines border (as in `nvim_open_win()`).
+	window = {
+		info = { height = 40, width = 40, border = 'none' },
+		signature = { height = 25, width = 40, border = 'none' },
+	},
 
-  -- Way of how module does LSP completion
-  lsp_completion = {
-    -- `source_func` should be one of 'completefunc' or 'omnifunc'.
-    source_func = 'completefunc',
+	-- Way of how module does LSP completion
+	lsp_completion = {
+		-- `source_func` should be one of 'completefunc' or 'omnifunc'.
+		source_func = 'completefunc',
 
-    -- `auto_setup` should be boolean indicating if LSP completion is set up
-    -- on every `BufEnter` event.
-    auto_setup = true,
+		-- `auto_setup` should be boolean indicating if LSP completion is set up
+		-- on every `BufEnter` event.
+		auto_setup = true,
 
-    -- `process_items` should be a function which takes LSP
-    -- 'textDocument/completion' response items and word to complete. Its
-    -- output should be a table of the same nature as input items. The most
-    -- common use-cases are custom filtering and sorting. You can use
-    -- default `process_items` as `MiniCompletion.default_process_items()`.
-    -- process_items = --<function: filters out snippets; sorts by LSP specs>,
-  },
+		-- `process_items` should be a function which takes LSP
+		-- 'textDocument/completion' response items and word to complete. Its
+		-- output should be a table of the same nature as input items. The most
+		-- common use-cases are custom filtering and sorting. You can use
+		-- default `process_items` as `MiniCompletion.default_process_items()`.
+		-- process_items = --<function: filters out snippets; sorts by LSP specs>,
+	},
 
-  -- Fallback action. It will always be run in Insert mode. To use Neovim's
-  -- built-in completion (see `:h ins-completion`), supply its mapping as
-  -- string. Example: to use 'whole lines' completion, supply '<C-x><C-l>'.
-  -- fallback_action = --<function: like `<C-n>` completion>,
+	-- Fallback action. It will always be run in Insert mode. To use Neovim's
+	-- built-in completion (see `:h ins-completion`), supply its mapping as
+	-- string. Example: to use 'whole lines' completion, supply '<C-x><C-l>'.
+	-- fallback_action = --<function: like `<C-n>` completion>,
 
-  -- Module mappings. Use `''` (empty string) to disable one. Some of them
-  -- might conflict with system mappings.
-  mappings = {
-    force_twostep = '<C-Space>', -- Force two-step completion
-    force_fallback = '<A-Space>', -- Force fallback completion
-  },
+	-- Module mappings. Use `''` (empty string) to disable one. Some of them
+	-- might conflict with system mappings.
+	mappings = {
+		force_twostep = '<C-Space>', -- Force two-step completion
+		force_fallback = '<A-Space>', -- Force fallback completion
+	},
 
-  -- Whether to set Vim's settings for better experience (modifies
-  -- `shortmess` and `completeopt`)
-  set_vim_settings = true,
+	-- Whether to set Vim's settings for better experience (modifies
+	-- `shortmess` and `completeopt`)
+	set_vim_settings = true,
 })
-vim.keymap.set('i', '<Tab>',   [[pumvisible() ? "\<C-n>" : "\<Tab>"]],   { expr = true })
-vim.keymap.set('i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], { expr = true })
-
+-- vim.keymap.set('i', '<Tab>',   [[pumvisible() ? "\<C-n>" : "\<Tab>"]],   { expr = true })
+-- vim.keymap.set('i', '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], { expr = true })
+--
 --[[
 conform.setup({
 	formatters_by_ft = {
