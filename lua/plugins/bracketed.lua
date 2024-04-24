@@ -15,7 +15,7 @@ bracketed.setup({
   -- See `:h MiniBracketed.config` for more info.
 
   buffer     = { suffix = 'b', options = {} },
-  comment    = { suffix = '', options = {} },
+  comment    = { suffix = '/', options = {} },
   conflict   = { suffix = '', options = {} },
   diagnostic = { suffix = 'd', options = {} },
   file       = { suffix = 'f', options = {} },
