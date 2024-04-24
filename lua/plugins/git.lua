@@ -61,21 +61,21 @@ signs.setup {
 		end
 
 		-- Navigation
-		-- map('n', ']c', function()
-		-- 	if vim.wo.diff then
-		-- 		vim.cmd.normal({ ']c', bang = true })
-		-- 	else
-		-- 		gitsigns.nav_hunk('next')
-		-- 	end
-		-- end)
+		map('n', ']c', function()
+			if vim.wo.diff then
+				vim.cmd.normal({ ']c', bang = true })
+			else
+				gitsigns.nav_hunk('next')
+			end
+		end, { desc="Hunk forward" })
 
-		-- map('n', '[c', function()
-		-- 	if vim.wo.diff then
-		-- 		vim.cmd.normal({ '[c', bang = true })
-		-- 	else
-		-- 		gitsigns.nav_hunk('prev')
-		-- 	end
-		-- end)
+		map('n', '[c', function()
+			if vim.wo.diff then
+				vim.cmd.normal({ '[c', bang = true })
+			else
+				gitsigns.nav_hunk('prev')
+			end
+		end, { desc="Hunk backward" })
 
 		-- Text object
 		map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
