@@ -247,7 +247,7 @@ vim.opt.shiftwidth = 8 -- number of spaces to use for (auto)indent step
 -- showtabline	  			-- tells when the tab pages line is displayed
 -- sidescroll	  			-- minimum number of columns to scroll horizontal
 -- sidescrolloff   			-- min. nr. of columns to left and right of cursor
--- signcolumn	  			-- when and how to display the sign column
+vim.opt.signcolumn = "yes"		-- when and how to display the sign column
 vim.opt.smartcase = true -- no ignore case when pattern has uppercase
 -- smartindent	  			-- smart autoindenting for C programs
 -- smarttab	  			-- use 'shiftwidth' when inserting <Tab>
