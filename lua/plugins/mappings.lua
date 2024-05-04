@@ -29,6 +29,7 @@ wk.register({
 		["m"] = { "<cmd>Telescope marks<CR>", "[M]arks Picker" },
 		["l"] = { "<cmd>Telescope resume<CR>", "Open [L]ast Used Picker" },
 		["c"] = { "<cmd>Telescope commands<CR>", "Open [C]ommand Palette" },
+		["s"] = { "<cmd>lua require('auto-session.session-lens').search_session()<CR>", "[S]ession Picker" },
 		["d"] = { "<cmd>Telescope diagnostics<CR>", "[D]iagnostics Picker" },
 	},
 

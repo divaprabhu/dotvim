@@ -21,7 +21,7 @@ require("lazy").setup({
 	{ "akinsho/toggleterm.nvim",    lazy = true },
 	{ "echasnovski/mini.surround",  version = "*", lazy = true },
 	{ "echasnovski/mini.align",     version = "*", lazy = true },
-	{ "echasnovski/mini.sessions",  version = "*", lazy = true },
+	{ "rmagatti/auto-session",      lazy = true },
 	{ "echasnovski/mini.bracketed", version = "*", lazy = true },
 	{ "numToStr/Comment.nvim",      lazy = true },
 	{
