@@ -15,7 +15,6 @@ wk.register({
 	},
 	["<leader>t"] = { name = "[T]erminal" },
 	["<leader>a"] = { name = "[A]lign" },
-	["<leader>/"] = { name = "Comment" },
 
 	-- Pickers
 	["<leader>f"] = {

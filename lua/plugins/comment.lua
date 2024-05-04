@@ -13,25 +13,25 @@ comment.setup({
     ---LHS of toggle mappings in NORMAL mode
     toggler = {
         ---Line-comment toggle keymap
-        line = '<leader>/c',
+        line = '<C-/>',
         ---Block-comment toggle keymap
-        block = '<leader>/b',
+        block = '<C-M-/>',
     },
     ---LHS of operator-pending mappings in NORMAL and VISUAL mode
     opleader = {
         ---Line-comment keymap
-        line = '<leader>/',
+        line = '<C-/>',
         ---Block-comment keymap
-        block = '<leader>/',
+        block = '<C-M-/>',
     },
     ---LHS of extra mappings
     extra = {
         ---Add comment on the line above
-        above = '<leader>/O',
+        above = '',
         ---Add comment on the line below
-        below = '<leader>/o',
+        below = '',
         ---Add comment at the end of line
-        eol = '<leader>/A',
+        eol = '',
     },
     ---Enable keybindings
     ---NOTE: If given `false` then the plugin won't create any mappings
@@ -39,7 +39,7 @@ comment.setup({
         ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
         basic = true,
         ---Extra mapping; `gco`, `gcO`, `gcA`
-        extra = true,
+        extra = false,
     },
     ---Function to call before (un)comment
     pre_hook = nil,
