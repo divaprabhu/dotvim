@@ -91,5 +91,8 @@ wk.register({
 	["<leader>G"] = { "<cmd>Neogit<CR>", "Neo[g]it" },
 
 	-- python
-	["<leader>v"] = { "<cmd>lua require('swenv.api').pick_venv()<CR>", "[V]env Picker" },
+	["<leader>v"] = { 
+		name = "Python [V]env",
+		["p"] = { "<cmd>lua require('swenv.api').pick_venv()<CR>", "[P]ick Venv" },
+	}
 })
