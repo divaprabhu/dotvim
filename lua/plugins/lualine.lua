@@ -27,7 +27,7 @@ statusline.setup({
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = { "filename" },
+		lualine_c = { { "swenv", cond = function() return vim.bo.filetype == "python" end }, "filename" },
 		lualine_x = { "progress", "location" },
 		lualine_y = { "encoding", "fileformat", "filetype" },
 		lualine_z = { "datetime" },
