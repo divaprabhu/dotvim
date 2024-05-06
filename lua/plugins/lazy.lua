@@ -48,7 +48,8 @@ require("lazy").setup({
 
 	-- Git
 	{ "lewis6991/gitsigns.nvim",           lazy = true },
-	{ "NeogitOrg/neogit",                  dependencies = { "nvim-lua/plenary.nvim", }, lazy = true },
+	-- { "NeogitOrg/neogit",                  dependencies = { "nvim-lua/plenary.nvim", }, lazy = true },
+	{ "tpope/vim-fugitive", },
 
 	-- python
 	{ "AckslD/swenv.nvim",                 lazy = true },

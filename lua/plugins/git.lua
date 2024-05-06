@@ -3,10 +3,10 @@ if not status_ok then
 	return
 end
 
-local status_ok, neogit = pcall(require, "neogit")
+--[[ local status_ok, neogit = pcall(require, "neogit")
 if not status_ok then
 	return
-end
+end ]]
 
 signs.setup {
 	signs                             = {
@@ -82,7 +82,7 @@ signs.setup {
 	end
 }
 
-
+--[[ 
 neogit.setup {
 	-- Hides the hints at the top of the status buffer
 	disable_hint = false,
@@ -332,4 +332,4 @@ neogit.setup {
 			["}"] = "GoToNextHunkHeader",
 		},
 	},
-}
+} ]]
