@@ -72,8 +72,8 @@ wk.register({
 	},
 
 	-- Git
-	["<leader>g"] = {
-		name = "[g]itsigns",
+	["<leader>G"] = {
+		name = "[G]itsigns",
 		["s"] = { function() require('gitsigns').stage_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, "[S]tage Hunk" },
 		["r"] = { function() require('gitsigns').reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, "[R]eset Hunk To Index" },
 		["u"] = { "<cmd>lua require('gitsigns').undo_stage_hunk()<CR>", "[U]ndo Stage Hunk" },
@@ -88,10 +88,18 @@ wk.register({
 		["h"] = { "<cmd>lua require('gitsigns').select_hunk()<CR>", "Select [H]unk" },
 	},
 
-	["<leader>G"] = { "<cmd>Neogit<CR>", "Neo[g]it" },
+	["<leader>g"] = {
+		name = "Fu[g]itive",
+		["g"] = { "<cmd>Git<CR>", "[g]it" },
+		["s"] = { "<cmd>Gwrite<CR>", "[s]tage to index" },
+		["c"] = { "<cmd>Gread<CR>", "[c]heckout index version" },
+		["r"] = { "<cmd>Gremove<CR>", "[r]emove file" },
+		["m"] = { "<cmd>Gmove<CR>", "[m]ove file" },
+		["b"] = { "<cmd>Gblame<CR>", "[b]lame" },
+	},
 
 	-- python
-	["<leader>v"] = { 
+	["<leader>v"] = {
 		name = "Python [V]env",
 		["p"] = { "<cmd>lua require('swenv.api').pick_venv()<CR>", "[P]ick Venv" },
 	}
